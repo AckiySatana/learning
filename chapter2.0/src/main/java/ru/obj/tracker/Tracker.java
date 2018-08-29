@@ -37,27 +37,34 @@ public class Tracker {
         return Double.toString(Math.random() * 100 + millis);
     }
 
-    public void replace(String id, Item item) {
-        for(int i=0;i<this.items.length;i++){
-            if(this.items[i].getId().equals(id)){
-                this.items[i]=item;
+    public boolean replace(String id, Item item) {
+        boolean res = false;
+        for (int i = 0; i < this.items.length; i++) {
+            if (this.items[i].getId().equals(id)) {
+                this.items[i] = item;
                 item.setId(id);
+                res = true;
                 break;
             }
         }
+        return res;
     }
 
-    public Item getItem(int num){
+    public Item getItem(int num) {
         return this.items[num];
     }
-    public void delete(String id) {
+
+    public boolean delete(String id) {
+        boolean res = false;
         for (int i = 0; i < this.items.length; i++) {
             if (this.items[i].getId().equals(id)) {
                 System.arraycopy(this.items, i + 1, this.items, i, this.items.length - i - 1);
                 position--;
+                res=true;
                 break;
             }
         }
+        return res;
     }
 
     public Item[] findAll() {
