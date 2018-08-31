@@ -56,12 +56,14 @@ public class Tracker {
 
     public boolean delete(String id) {
         boolean res = false;
-        for (int i = 0; i < this.items.length; i++) {
-            if (this.items[i].getId().equals(id)) {
-                System.arraycopy(this.items, i + 1, this.items, i, this.items.length - i - 1);
-                position--;
-                res=true;
-                break;
+        if (this.findAll().length >0) {
+            for (int i = 0; i < this.items.length; i++) {
+                if (this.items[i].getId().equals(id)) {
+                    System.arraycopy(this.items, i + 1, this.items, i, this.items.length - i - 1);
+                    position--;
+                    res = true;
+                    break;
+                }
             }
         }
         return res;

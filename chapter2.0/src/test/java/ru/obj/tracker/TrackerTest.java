@@ -64,7 +64,6 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item1 = new Item("test2", "testDescription", 123L);
         tracker.add(item1);
-        System.out.println(item1.getName());
         Item item2 = new Item("test2", "testDescription", 123L);
         tracker.add(item2);
         Item item3 = new Item("test3", "testDescription", 123L);
@@ -80,7 +79,6 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item1 = new Item("test2", "testDescription", 123L);
         tracker.add(item1);
-        System.out.println(item1.getName());
         Item item2 = new Item("test2", "testDescription", 123L);
         tracker.add(item2);
         Item item3 = new Item("test3", "testDescription", 123L);
