@@ -1,4 +1,4 @@
-package ru.obj.tracker.Shape;
+package ru.obj.shape;
 
 public interface Shape {
     String draw();
