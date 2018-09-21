@@ -1,6 +1,7 @@
 package ru.obj.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.*;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -26,7 +27,7 @@ public class StartUITest {
     @Test
     public void whenUpdateThenSameName() {
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("first", "desc", 123L));
+        Item item = tracker.add(new Item("first", "desc"));
         Input input = new StubInput(new String[]{"2", item.getId(), "second", "desc", "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("second"));
@@ -35,7 +36,7 @@ public class StartUITest {
     @Test
     public void whenDeleteThanGood() {
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("delete", "desc of delete", 144l));
+        Item item = tracker.add(new Item("delete", "desc of delete"));
         Input input = new StubInput(new String[]{"0", "test name", "desc", "3",tracker.findAll()[0].getId(), "6"});
         new StartUI(input,tracker).init();
         assertThat(tracker.findAll()[0].getName(),is("test name"));
@@ -44,7 +45,7 @@ public class StartUITest {
     @Test
     public void whenFindByName() {
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("delete", "desc of delete", 144l));
+        Item item = tracker.add(new Item("delete", "desc of delete"));
         Input input = new StubInput(new String[]{"0", "test name", "desc", "0", "test name", "desc2", "6"});
         new StartUI(input,tracker).init();
         assertThat(tracker.findByName("test name").length,is(2));

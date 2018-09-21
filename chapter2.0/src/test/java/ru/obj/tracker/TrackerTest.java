@@ -1,6 +1,8 @@
 package ru.obj.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.Item;
+import ru.job4j.tracker.Tracker;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
@@ -14,11 +16,11 @@ public class TrackerTest {
     @org.junit.Test
     public void whenReplaceNameThenReturnNewName() {
        Tracker tracker = new Tracker();
-        Item previous = new Item("test1", "testDescription", 123L);
+        Item previous = new Item("test1", "testDescription");
         // Добавляем заявку в трекер. Теперь в объект проинициализирован id.
         tracker.add(previous);
         // Создаем новую заявку.
-        Item next = new Item("test2", "testDescription2", 1234L);
+        Item next = new Item("test2", "testDescription2");
         // Проставляем старый id из previous, который был сгенерирован выше.
         next.setId(previous.getId());
         // Обновляем заявку в трекере.
@@ -29,18 +31,18 @@ public class TrackerTest {
 
     public void whenAddNewItemThenTrackerHasSameOne() {
         Tracker treack = new Tracker();
-        Item item = new Item("test1", "testDescr", 123L);
+        Item item = new Item("test1", "testDescr");
         treack.add(item);
-        assertThat(treack.getItem(0), is(item));
+        assertThat(treack.findByName("test1vc"), is(item));
     }
 
     public void whenDelete() {
         Tracker treack = new Tracker();
-        Item item = new Item("test1", "testDescr", 123L);
+        Item item = new Item("test1", "testDescr");
         treack.add(item);
-        Item item1 = new Item("test1", "testDescr", 123L);
+        Item item1 = new Item("test1", "testDescr");
         treack.add(item1);
-        Item item2 = new Item("test2", "testDescr", 123L);
+        Item item2 = new Item("test2", "testDescr");
         treack.add(item2);
         treack.delete(item1.getId());
         assertThat(treack.findAll().length, is(2));
@@ -49,11 +51,11 @@ public class TrackerTest {
     @Test
     public void whenGetCount(){
         Tracker tracker = new Tracker();
-        Item item1 = new Item("test2", "testDescription", 123L);
+        Item item1 = new Item("test2", "testDescription");
         tracker.add(item1);
-        Item item2 = new Item("test2", "testDescription", 123L);
+        Item item2 = new Item("test2", "testDescription");
         tracker.add(item2);
-        Item item3 = new Item("test3", "testDescription", 123L);
+        Item item3 = new Item("test3", "testDescription");
         tracker.add(item3);
         assertThat(tracker.findAll().length, is(3));
     }
@@ -62,11 +64,11 @@ public class TrackerTest {
 
     public void whenFindName() {
         Tracker tracker = new Tracker();
-        Item item1 = new Item("test2", "testDescription", 123L);
+        Item item1 = new Item("test2", "testDescription");
         tracker.add(item1);
-        Item item2 = new Item("test2", "testDescription", 123L);
+        Item item2 = new Item("test2", "testDescription");
         tracker.add(item2);
-        Item item3 = new Item("test3", "testDescription", 123L);
+        Item item3 = new Item("test3", "testDescription");
         tracker.add(item3);
         Item[] it = tracker.findByName("test2");
         assertThat(it.length, is(2));
@@ -77,11 +79,11 @@ public class TrackerTest {
     @Test
     public void whenFindById() {
         Tracker tracker = new Tracker();
-        Item item1 = new Item("test2", "testDescription", 123L);
+        Item item1 = new Item("test2", "testDescription");
         tracker.add(item1);
-        Item item2 = new Item("test2", "testDescription", 123L);
+        Item item2 = new Item("test2", "testDescription");
         tracker.add(item2);
-        Item item3 = new Item("test3", "testDescription", 123L);
+        Item item3 = new Item("test3", "testDescription");
         tracker.add(item3);
         assertThat(tracker.findById(item1.getId()),is(item1));
     }

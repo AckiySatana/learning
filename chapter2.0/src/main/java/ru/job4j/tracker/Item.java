@@ -1,7 +1,4 @@
-package ru.obj.tracker;
-
-import java.util.Date;
-
+package ru.job4j.tracker;
 public class Item {
     /**
      * Объявляем переменнве:
@@ -17,10 +14,9 @@ public class Item {
     /**
      * метод создания заявки
      */
-    Item(String name,String desc,long create) {
+    public Item(String name,String desc) {
         this.name=name;
         this.desc=desc;
-        this.created=create;
     }
 
     public void setId(String id) {

@@ -1,19 +1,12 @@
-package ru.obj.tracker;
+package ru.job4j.tracker;
 
-import ru.obj.tracker.Item;
-
-import java.time.*;
 import java.util.Arrays;
 
 public class Tracker {
-    /**
-     * Массив для хранение заявок.
-     */
+
     private final Item[] items = new Item[100];
-    /**
-     * Указатель ячейки для новой заявки.
-     */
-    private int position = 0;
+
+    private int position;
 
     /**
      * Метод реализаущий добавление заявки в хранилище
@@ -48,10 +41,6 @@ public class Tracker {
             }
         }
         return res;
-    }
-
-    public Item getItem(int num) {
-        return this.items[num];
     }
 
     public boolean delete(String id) {

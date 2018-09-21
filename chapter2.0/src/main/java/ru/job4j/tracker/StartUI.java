@@ -1,9 +1,7 @@
-package ru.obj.tracker;
+package ru.job4j.tracker;
 
 public class StartUI {
-    /**
-     * перечислим строки меню
-     */
+
     private static final String ADD = "0";
     private static final String SHOWALL = "1";
     private static final String EDIT = "2";
@@ -12,14 +10,8 @@ public class StartUI {
     private static final String FINDBYNAME = "5";
     private static final String EXIT = "6";
 
-    /**
-     * хранение заявок
-     */
     public final Tracker tracker;
 
-    /**
-     * получение данных от пользоватедя
-     */
     private final Input input;
 
     /**
@@ -33,9 +25,6 @@ public class StartUI {
         this.tracker = tracker;
     }
 
-    /**
-     * ваводим на экран предложение к дкйствию
-     */
     public void showMenu() {
         System.out.println("Меню:");
         System.out.println("Для добавления новой записи нажмите 0");
@@ -47,21 +36,15 @@ public class StartUI {
         System.out.println("Для выхода нажмите 6");
     }
 
-    /**
-     * создание новой записи в трекере
-     */
     private void createItem() {
         System.out.println("_________________Добавление новой заявки________________");
         String name = this.input.ask("Ввкдите наименование заявки");
         String desc = this.input.ask("Ввкдите описание заявки");
-        Item item = new Item(name, desc, 00l);
+        Item item = new Item(name, desc);
         this.tracker.add(item);
         System.out.println("id зарегистрированной заявки - " + item.getId());
     }
 
-    /**
-     * отображение записей
-     */
     public void showAll() {
         Item[] show = this.tracker.findAll();
         if (show.length > 0) {
@@ -79,7 +62,7 @@ public class StartUI {
         String id = this.input.ask("Введите для id для замены");
         String name = this.input.ask("Введите новое имя запими");
         String desc = this.input.ask("Введите новое описание записи");
-        if (this.tracker.replace(id, new Item(name, desc, 12L))) {
+        if (this.tracker.replace(id, new Item(name, desc))) {
             System.out.println("Запись заменена");
         } else {
             System.out.println("облом при попытке замены");
@@ -96,20 +79,20 @@ public class StartUI {
     }
 
     public void findById() {
-        String id=this.input.ask("Id записи, пожалуйста");
+        String id = this.input.ask("Id записи, пожалуйста");
         Item item = this.tracker.findById(id);
-        if (item!=null){
-            System.out.println("Найдена запись с наименованием"+item.getName());
+        if (item != null) {
+            System.out.println("Найдена запись с наименованием" + item.getName());
         } else {
             System.out.println("Запись не найдена");
         }
     }
 
     public void findByName() {
-        String name=this.input.ask("Id наименование записи, пожалуйста");
+        String name = this.input.ask("Id наименование записи, пожалуйста");
         Item[] item = this.tracker.findByName(name);
-        if (item.length>0){
-            System.out.println("Найдено "+item.length+ " записей с наименованием "+name);
+        if (item.length > 0) {
+            System.out.println("Найдено " + item.length + " записей с наименованием " + name);
         } else {
             System.out.println("Запись не найдена");
         }
@@ -135,16 +118,11 @@ public class StartUI {
             } else if (this.EXIT.equals(answer)) {
                 exit = true;
             } else {
-                //значит ввел какую-то лажу]
+                System.out.println("Ошибка ввода данных");
             }
         }
     }
 
-    /**
-     * запуск проги
-     *
-     * @param args
-     */
     public static void main(String[] args) {
         new StartUI(new ConsoleInput(), new Tracker()).init();
     }

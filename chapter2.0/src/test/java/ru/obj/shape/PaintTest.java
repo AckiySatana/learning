@@ -1,9 +1,9 @@
 package ru.obj.shape;
 
 import org.junit.Test;
-import ru.obj.shape.Paint;
-import ru.obj.shape.Square;
-import ru.obj.shape.Triangle;
+import ru.job4j.shape.Paint;
+import ru.job4j.shape.Square;
+import ru.job4j.shape.Triangle;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
