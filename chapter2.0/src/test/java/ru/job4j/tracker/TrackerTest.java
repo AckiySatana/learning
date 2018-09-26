@@ -7,13 +7,10 @@ import static org.hamcrest.core.Is.is;
 
 public class TrackerTest {
 
-    @org.junit.Test
-    public void add() {
-    }
 
     @org.junit.Test
     public void whenReplaceNameThenReturnNewName() {
-       Tracker tracker = new Tracker();
+        Tracker tracker = new Tracker();
         Item previous = new Item("test1", "testDescription");
         // Добавляем заявку в трекер. Теперь в объект проинициализирован id.
         tracker.add(previous);
@@ -47,7 +44,7 @@ public class TrackerTest {
     }
 
     @Test
-    public void whenGetCount(){
+    public void whenGetCount() {
         Tracker tracker = new Tracker();
         Item item1 = new Item("test2", "testDescription");
         tracker.add(item1);
@@ -70,8 +67,8 @@ public class TrackerTest {
         tracker.add(item3);
         Item[] it = tracker.findByName("test2");
         assertThat(it.length, is(2));
-        assertThat(it[0].getId(),is(item1.getId()));
-        assertThat(it[1].getId(),is(item2.getId()));
+        assertThat(it[0].getId(), is(item1.getId()));
+        assertThat(it[1].getId(), is(item2.getId()));
     }
 
     @Test
@@ -83,7 +80,7 @@ public class TrackerTest {
         tracker.add(item2);
         Item item3 = new Item("test3", "testDescription");
         tracker.add(item3);
-        assertThat(tracker.findById(item1.getId()),is(item1));
+        assertThat(tracker.findById(item1.getId()), is(item1));
     }
 
 }
