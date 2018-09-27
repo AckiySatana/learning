@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import org.hamcrest.core.Is;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -26,6 +27,7 @@ import java.io.PrintStream;
 public class StartUITest {
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    String sep = System.lineSeparator();
 
     @Before
     public void loadOutput() {
@@ -78,5 +80,58 @@ public class StartUITest {
         Input input = new StubInput(new String[]{"0", "test name", "desc", "0", "test name", "desc2", "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findByName("test name").length, is(2));
+    }
+
+    /**
+     * Тесты через вывод в консоль
+     */
+    @Test
+
+    public void whenCheckConsoleOutput() {
+
+        Input input = new StubInput(new String[]{"6"});
+        new StartUI(input, new Tracker()).init();
+        assertThat(new String(out.toByteArray()), is(new StringBuilder()
+                // .append(System.lineSeparator())
+                .append("Меню:").append(sep)
+                .append("Для добавления новой записи нажмите 0").append(sep)
+                .append("Для просмотра всех записей нажмите 1").append(sep)
+                .append("Для редактирования записи нажмите 2").append(sep)
+                .append("Для удаления записи нажмите 3").append(sep)
+                .append("Для поиска записи по id нажмите 4").append(sep)
+                .append("Для поиска записи по наимеованию нажмите 5").append(sep)
+                .append("Для выхода нажмите 6")
+                .append(System.lineSeparator())
+                .toString()));
+    }
+
+    @Test
+    public void whenCheckConsoleOutputAddObject() {
+        Input input = new StubInput(new String[]{"0", "name4", "desc4", "6"});
+        Tracker tracker = new Tracker();
+        new StartUI(input, tracker).init();
+        assertThat(new String(out.toByteArray()), is(new StringBuilder()
+                .append("Меню:").append(sep)
+                .append("Для добавления новой записи нажмите 0").append(sep)
+                .append("Для просмотра всех записей нажмите 1").append(sep)
+                .append("Для редактирования записи нажмите 2").append(sep)
+                .append("Для удаления записи нажмите 3").append(sep)
+                .append("Для поиска записи по id нажмите 4").append(sep)
+                .append("Для поиска записи по наимеованию нажмите 5").append(sep)
+                .append("Для выхода нажмите 6")
+                .append(sep)
+                .append("_________________Добавление новой заявки________________").append(sep)
+                .append("id зарегистрированной заявки - ")
+                .append(tracker.findAll()[0].getId()).append(sep)
+                .append("Меню:").append(sep)
+                .append("Для добавления новой записи нажмите 0").append(sep)
+                .append("Для просмотра всех записей нажмите 1").append(sep)
+                .append("Для редактирования записи нажмите 2").append(sep)
+                .append("Для удаления записи нажмите 3").append(sep)
+                .append("Для поиска записи по id нажмите 4").append(sep)
+                .append("Для поиска записи по наимеованию нажмите 5").append(sep)
+                .append("Для выхода нажмите 6")
+                .append(sep)
+                .toString()));
     }
 }
