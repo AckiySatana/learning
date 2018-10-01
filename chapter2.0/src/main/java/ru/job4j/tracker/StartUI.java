@@ -26,14 +26,16 @@ public class StartUI {
     }
 
     public void showMenu() {
-        System.out.println("Меню:");
-        System.out.println("Для добавления новой записи нажмите 0");
-        System.out.println("Для просмотра всех записей нажмите 1");
-        System.out.println("Для редактирования записи нажмите 2");
-        System.out.println("Для удаления записи нажмите 3");
-        System.out.println("Для поиска записи по id нажмите 4");
-        System.out.println("Для поиска записи по наимеованию нажмите 5");
-        System.out.println("Для выхода нажмите 6");
+        String sep = System.lineSeparator();
+        System.out.print(new StringBuilder()
+                .append("Меню:").append(sep)
+                .append("Для добавления новой записи нажмите 0").append(sep)
+                .append("Для просмотра всех записей нажмите 1").append(sep)
+                .append("Для редактирования записи нажмите 2").append(sep)
+                .append("Для удаления записи нажмите 3").append(sep)
+                .append("Для поиска записи по id нажмите 4").append(sep)
+                .append("Для поиска записи по наимеованию нажмите 5").append(sep)
+                .append("Для выхода нажмите 6").append(sep).toString());
     }
 
     private void createItem() {
@@ -99,7 +101,7 @@ public class StartUI {
     }
 
     public void init() {
-        boolean exit = false;
+        /*boolean exit = false;
         while (!exit) {
             this.showMenu();
             String answer = this.input.ask("Введите пункт меню:");
@@ -121,6 +123,14 @@ public class StartUI {
                 System.out.println("Ошибка ввода данных");
             }
         }
+        */
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        menu.fillActions();
+
+        do {
+            menu.show();
+            menu.select(Integer.parseInt(this.input.ask("Выберете ввриант")));
+        } while (!this.input.ask("Для выхода напечатайте \"Да\"").equals("Да"));
     }
 
     public static void main(String[] args) {

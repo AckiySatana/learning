@@ -82,17 +82,12 @@ public class StartUITest {
         assertThat(tracker.findByName("test name").length, is(2));
     }
 
-    /**
-     * Тесты через вывод в консоль
-     */
     @Test
-
     public void whenCheckConsoleOutput() {
 
         Input input = new StubInput(new String[]{"6"});
         new StartUI(input, new Tracker()).init();
         assertThat(new String(out.toByteArray()), is(new StringBuilder()
-                // .append(System.lineSeparator())
                 .append("Меню:").append(sep)
                 .append("Для добавления новой записи нажмите 0").append(sep)
                 .append("Для просмотра всех записей нажмите 1").append(sep)
