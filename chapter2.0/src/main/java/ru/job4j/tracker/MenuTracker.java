@@ -1,9 +1,20 @@
 package ru.job4j.tracker;
 
+/**
+ * Метод range возвращает массив количкства элементлв
+ */
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
     private UserAction[] actions = new UserAction[6];
+
+    public int[] getRange() {
+        int[] range = new int[this.actions.length];
+        for (int i = 0; i < range.length; i++) {
+            range[i] = i;
+        }
+        return range;
+    }
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -117,7 +128,7 @@ public class MenuTracker {
         }
 
         public String info() {
-            return String.format("%s. %s", this.key(), "Поимт записи по id");
+            return String.format("%s. %s", this.key(), "Поиск записи по id");
         }
     }
 
@@ -137,7 +148,7 @@ public class MenuTracker {
         }
 
         public String info() {
-            return String.format("%s. %s", this.key(), "Поимт записи по имени");
+            return String.format("%s. %s", this.key(), "Поиск записи по имени");
         }
     }
 

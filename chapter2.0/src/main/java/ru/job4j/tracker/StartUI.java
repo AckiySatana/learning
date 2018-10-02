@@ -129,11 +129,11 @@ public class StartUI {
 
         do {
             menu.show();
-            menu.select(Integer.parseInt(this.input.ask("Выберете ввриант")));
-        } while (!this.input.ask("Для выхода напечатайте \"Да\"").equals("Да"));
+            menu.select(this.input.ask("Выберете ввриант работы с трекером",menu.getRange()));
+        } while (!this.input.ask("Для выхода напечатайте \"Да\".").equals("Да"));
     }
 
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }
