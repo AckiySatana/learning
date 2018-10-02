@@ -20,10 +20,9 @@ public class ConsoleInput implements Input {
                 break;
             }
         }
-        if (check) {
-            return key;
-        } else {
+        if (!check) {
             throw new MenuOutException("Вне диопаона меню");
         }
+        return key;
     }
 }
