@@ -130,10 +130,10 @@ public class StartUI {
         do {
             menu.show();
             menu.select(this.input.ask("Выберете ввриант работы с трекером",menu.getRange()));
-        } while (!this.input.ask("Для выхода напечатайте \"Да\".").equals("Да"));
+        } while (!this.input.ask("Для выхода напечатайте \"Да\". Для продолжения введите любой символ").equals("Да"));
     }
 
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
     }
 }
