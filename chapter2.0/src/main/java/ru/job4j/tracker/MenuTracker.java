@@ -6,7 +6,7 @@ package ru.job4j.tracker;
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
-    private UserAction[] actions = new UserAction[6];
+    private UserAction[] actions = new UserAction[7];
 
     public int[] getRange() {
         int[] range = new int[this.actions.length];
@@ -21,7 +21,7 @@ public class MenuTracker {
         this.tracker = tracker;
     }
 
-    public void fillActions() {
+    public void fillActions(StartUI ui) {
         // скорее всего тут будет запуск меню
         this.actions[0] = new AddItem();
         this.actions[1] = new showAll();
@@ -29,6 +29,7 @@ public class MenuTracker {
         this.actions[3] = new delete();
         this.actions[4] = new findById();
         this.actions[5] = new findByName();
+        this.actions[6] = new exit(ui);
     }
 
     private class AddItem implements UserAction {
@@ -149,6 +150,27 @@ public class MenuTracker {
 
         public String info() {
             return String.format("%s. %s", this.key(), "Поиск записи по имени");
+        }
+    }
+
+    private class exit implements UserAction {
+        private final  StartUI ui;
+
+        exit(StartUI ui) {
+            this.ui = ui;
+        }
+
+        public int key() {
+            return 6;
+        }
+
+        public void execute(Input input, Tracker tracker) {
+            this.ui.notWorking();
+            System.out.println("Хорошего дня");
+        }
+
+        public String info() {
+            return String.format("%s. %s", this.key(), "Выход из программы");
         }
     }
 

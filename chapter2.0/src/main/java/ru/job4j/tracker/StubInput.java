@@ -4,15 +4,17 @@ import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 public class StubInput implements Input {
     private final String[] value;
-    private  int position;
+    private int position;
 
-    public StubInput(final String[] value){
-        this.value=value;
+    public StubInput(final String[] value) {
+        this.value = value;
     }
-    public String ask(String question){
+
+    public String ask(String question) {
         return this.value[position++];
     }
-    public int ask(String question,int[] range){
+
+    public int ask(String question, int[] range) {
         boolean check = false;
         int key = Integer.valueOf(ask(question));
         for (int value : range

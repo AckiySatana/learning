@@ -11,7 +11,7 @@ public class StartUI {
     private static final String EXIT = "6";
 
     public final Tracker tracker;
-
+    private boolean working = true;
     private final Input input;
 
     /**
@@ -101,36 +101,16 @@ public class StartUI {
     }
 
     public void init() {
-        /*boolean exit = false;
-        while (!exit) {
-            this.showMenu();
-            String answer = this.input.ask("Введите пункт меню:");
-            if (ADD.equals(answer)) {
-                this.createItem();
-            } else if (this.SHOWALL.equals(answer)) {
-                this.showAll();
-            } else if (this.EDIT.equals(answer)) {
-                this.edit();
-            } else if (this.DELETE.equals(answer)) {
-                this.delete();
-            } else if (this.FINDBYID.equals(answer)) {
-                this.findById();
-            } else if (this.FINDBYNAME.equals(answer)) {
-                this.findByName();
-            } else if (this.EXIT.equals(answer)) {
-                exit = true;
-            } else {
-                System.out.println("Ошибка ввода данных");
-            }
-        }
-        */
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        menu.fillActions();
-
+        menu.fillActions(this);
         do {
             menu.show();
-            menu.select(this.input.ask("Выберете ввриант работы с трекером",menu.getRange()));
-        } while (!this.input.ask("Для выхода напечатайте \"Да\". Для продолжения введите любой символ").equals("Да"));
+            menu.select(this.input.ask("Выберете ввриант работы с трекером", menu.getRange()));
+        } while (this.working);
+    }
+
+    public void notWorking() {
+        this.working = false;
     }
 
     public static void main(String[] args) {
